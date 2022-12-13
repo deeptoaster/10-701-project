@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[preprint]{neurips_2022}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{float}
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{graphicx}
+\usepackage{hyperref}       % hyperlinks
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\title{Bilingual Offline Transcriptions}
+\author{
+  Yizhen Yu \\
+  Carnegie Mellon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{yizheny@andrew.cmu.edu} \\\And
+  Henry Wu \\
+  Carnegie Mellon University \\
+  Pittsburgh, PA 15213 \\
+  \texttt{zhenyuW@andrew.cmu.edu}
+}
+\begin{document}
+  \maketitle
+  \begin{abstract}
+    This project examines different approaches to implementing and improving automatic speech recognition for input in more than one language. This is a task that has wide applicability in fields that deal with bilingual and multilingual content, such as transcripts of video interviews and translation software for live conversations. We found that by % TODO
+  \end{abstract}
+  \section{Introduction}
+  \textbf{Automatic speech recognition (ASR)}, the process of transforming human speech into readable text, has long been an area of popular research in machine learning. Traditional models for ASR are often based on a hidden Markov model (HMM) and Gaussian mixture model (GMM) architecture that learn explicit acoustic, lexicon, and language models; since then, end-to-end deep-learning proposals have advanced ASR without the need for these explicit models, although in some cases a language model is provided to achieve better results.
+
+  A number of such end-to-end model architectures have been proposed, including RNN-\footnote{\cite{Chan}}, transformer-\footnote{\cite{Vaswani}}, and conformer-based\footnote{\cite{Gulati}} methods, and have steadily chipped away at word error rate (WER) as a metric of performance on ASR tasks. However, these methods have largely focused on training and running on a single language---usually English---while situations that include bilingual speech are largely overlooked. In this project, we explore a selection of strategies to investigate the ease and effectiveness with which we may introduce bilingual support.
+\end{document}

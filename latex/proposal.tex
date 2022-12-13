@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[preprint]{neurips_2022}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{float}
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{graphicx}
+\usepackage{hyperref}       % hyperlinks
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\title{Bilingual Offline Transcriptions: Proposal}
+\author{
+  Yizhen Yu \\
+  Carnegie Mellon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{yizheny@andrew.cmu.edu} \\\And
+  Henry Wu \\
+  Carnegie Mellon University \\
+  Pittsburgh, PA 15213 \\
+  \texttt{zhenyuW@andrew.cmu.edu}
+}
+\begin{document}
+  \maketitle
+  \section{Background and Importance}
+  \subsection{Automatic Speech Recognition}
+  A number of different model architectures have been proposed beyond the RNN model that was formerly dominant, including RNN-\footnote{“Listen, Attend and Spell” \url{https://arxiv.org/abs/1508.01211}}, transformer-\footnote{“Attention Is All You Need” \url{https://arxiv.org/abs/1706.03762}}, and conformer-based\footnote{“Conformer: Convolution-augmented Transformer for Speech Recognition” \url{https://arxiv.org/abs/2005.08100}} methods. However, the papers that have been published around these methods have largely focused on training and running on a single language, usually English. We intend to explore a selection of these architectures to investigate the ease and effectiveness with which we may introduce bilingual support. We will experiment on different architectures and models and decide if there’s improvement to be made.
+  \subsection{Bilingual Speech and Code-Switching}
+  A common phenomenon in conversations involving bilingual individuals is code switching, in which a speaker changes languages within a single unit of speech\footnote{\url{https://en.wikipedia.org/wiki/Code-switching}}. This can happen at a number of different levels—among different sentences in a conversation, among words or phrases in a sentence, and even among parts of a single word.
+  
+  Depending on the availability of training samples, this project will focus on the first two—either complete sentences will be given to the model in one language or another, or a sentence containing words from both languages will be introduced. The goal of this project is to demonstrate, experiment with, and evaluate the introduction of bilingual speech into different ASR model architectures and to compare the performance between different pairs of input languages.
+  \section{Plan of Action}
+  \subsection{Tools}
+  We will use ESPnet\footnote{\url{ https://github.com/espnet/espnet}} as our basis for experimenting with these models. It provides a large number of model recipes out of the box, encompassing RNN, transformer, and conformer models, many of which are based on and cross-reference specific papers. This should allow us to get started quickly without having to reimplement many of these details ourselves.
+  
+  As a backup option, we will consider Fairseq\footnote{\url{https://github.com/facebookresearch/fairseq}} an alternative if issues arise with ESPnet. Other sample implementations of various papers (such as LAS in PyTorch\footnote{\url{https://github.com/kaituoxu/Listen-Attend-Spell}}) may be used as references.
+  \subsection{Dataset}
+  A large number of voice datasets in various languages are available on Hugging Face\footnote{\url{ https://huggingface.co/datasets?task_categories=task_categories:automatic-speech-recognition}}. We will start with "common voice"\footnote{\url{ https://huggingface.co/datasets/common_voice}}, which contains thousands of hours of audio in dozens of languages. Different language combinations may be investigated as part of this project, but we will start with the English and Spanish segments as they contain large corpora and produce compatible text output (being both written in Latin script).
+  \subsection{Milestones}
+  \begin{enumerate}
+    \item Oct. 1st Finish project proposal
+    \item Oct. 20th Finish reimplementing the existing models and architectures already proposed in the industry, start expermenting on them to determine which one would we focus on (either with best performance or the one we might improve on)
+    \item Oct. 30th  Finish on the Midway report
+    \item Nov. 20th Finish experimenting and improving with the preliminary results we had for the midway report, make conclusions on the improvements and performance evaluations we made, fine-tuning details, etc.
+    \item Nov. 30th Compiling our work to a general briefing
+    \item Dec. 7th Presentation prep
+    \item Dec. 12th Finish on final report
+  \end{enumerate}
+  \subsection{Evaluation}
+  Evaluation metrics for this project would mainly be the WER(word error rate) the model achieved on our testing set. The WER for current speech-to-text models ranges from 10\% to 14\%, while the state-of-the-art  CLDNN-HMM model achieves 8\%\footnote{“Listen, Attend and Spell” \url{https://arxiv.org/abs/1508.01211}}. While we mainly focus on bilingual (multilingual if possible) speech-to-text models and would most likely end up with higher WER, our aim is to achieve a similar rate.
+  \section{Resources \& Related Work}
+  Papers detailing bilingual support for Frisian and Indian languages will be used as references, along with all references listed in this proposal. Our resources (mainly datasets) and related work are (but may not limit to):
+  \begin{enumerate}
+    \item For Frisian language: \url{https://www.sciencedirect.com/science/article/pii/S1877050916300588}
+    \item For Indian language: \url{https://ieeexplore.ieee.org/document/9024758}
+    \item “Listen, Attend and Spell” \url{https://arxiv.org/abs/1508.01211}
+    \item “Attention Is All You Need” \url{https://arxiv.org/abs/1706.03762}
+    \item “Conformer: Convolution-augmented Transformer for Speech Recognition” \url{https://arxiv.org/abs/2005.08100}
+  \end{enumerate}
+\end{document}
