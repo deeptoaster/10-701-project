@@ -29,7 +29,7 @@
 
   A number of such end-to-end model architectures have been proposed, including RNN-\footnote{\cite{Chan}}, transformer-\footnote{\cite{Vaswani}}, and conformer-based\footnote{\cite{Gulati}} methods, and have steadily chipped away at word error rate (WER) as a metric of performance on ASR tasks. However, these methods have largely focused on training and running on a single language---usually English---while situations that include bilingual speech are largely overlooked. We intend to explore a selection of these architectures to investigate the ease and effectiveness with which we may introduce bilingual support.
   \subsection{Bilingual Speech and Code-Switching}
-  A common phenomenon in conversations involving bilingual individuals is code-switching, in which a speaker changes languages within a single unit of speech\footnote{\url{https://en.wikipedia.org/wiki/Code-switching}}. This can happen at a number of different levels—among different sentences in a conversation, among words or phrases in a sentence, and even among parts of a single word.
+  A common phenomenon in conversations involving bilingual individuals is code-switching, in which a speaker changes languages within a single unit of speech\footnote{\url{https://en.wikipedia.org/wiki/Code-switching}}. This can happen at a number of different levels---among different sentences in a conversation, among words or phrases in a sentence, and even among parts of a single word.
 
   This project will focus on the first one---complete sentences in one of two languages in which a model is trained will be provided as input to the model to evaluate its effectiveness in distinguishing and transcribing them. (This task is different from that of \textit{speech translation}, in which the input is in one language and the output is in another.) This is a problem that is noticeably underserved not only in the literature---the only two papers we could find that addressed multilingual training are described in \ref{literature}---but also in implementation---even mature speech transcription services such as YouTube's automatic captioning service\footnote{\url{https://support.google.com/youtube/answer/6373554?hl=en}} fails to handle well-separated speech in two languages.
   \subsection{Data} \label{data}
@@ -49,14 +49,14 @@
     \label{diagram yilmaz}
   \end{figure}
   Note that as the authors point out, Dutch vowels are a subset of Frisian vowels and the two languages are strongly influenced by each other, which may make the combined model easier to train in that case. Although the two languages we intend to train on also use the same script, they are only very distantly related---Lithuanian is in the Baltic branch of the Indo-European language family, while Slovakian is in the Slavic branch. We would thus expect fewer of the advantages that \cite{Yilmaz} saw in combining models for two more similar languages.
-  
+
   \cite{Liu} develops multilingual machine translation on a wider variety of languages using the mBART model, with a sequence-to-sequence auto-encoder trained on large monolingual corpora in many languages and a transformer decoder, comparing performance on models pretrained on different numbers of languages (see \ref{diagram liu}).
   \begin{figure}[H]
     \includegraphics[width=\textwidth]{images/diagram-liu}
     \caption{Training process for mBART model by \cite{Liu}}
     \label{diagram liu}
   \end{figure}
-  Note that although this paper deals with machine \emph{translation} rather than transcription, it's notable for the approach it takes for distinguishing languages, by labelling sentences with a language marker. THe paper concludes that pretraining with a dataset that includes both languages in and out of test data helps with performance, implying that the hidden layers of the transformer model learn generalized features across different languages which allow it to perform well against languages in testing it had never encountered during training.
+  Note that although this paper deals with machine \emph{translation} rather than transcription, it's notable for the approach it takes for distinguishing languages, by labelling sentences with a language marker. The paper concludes that pretraining with a dataset that includes both languages in and out of test data helps with performance, implying that the hidden layers of the transformer model learn generalized features across different languages which allow it to perform well against languages in testing it had never encountered during training.
   \section{Methods and Model}
   \subsection{Framework and Benchmarking}
   For our experimentation framework, we use ESPnet2\footnote{\url{https://github.com/espnet/espnet}}, a comprehensive speech processing toolkit that provides a large number of model recipes out of the box, many of which are based on and cross-reference specific papers. In addition, it comes with some useful data pipelines that can be fed into these recipes, including Common Voice 5.
