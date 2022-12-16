@@ -1,4 +1,30 @@
-# Combined Lithuanian and Slovak ASR
+# Bilingual Offline Transcriptions
+
+## Usage
+
+This file provides instructions for running each of the experiments in the
+project. All of the experiments were done by modifying core ESPnet code and do
+not include separate scripts.
+
+## Directory structure
+
+Before running any of the experiments,
+[install ESPnet from source](https://espnet.github.io/espnet/installation.html)
+and copy the contents of _asr1_ to _egs2/commonvoice/asr1_ with directory
+structure intact. This can be done with
+
+```
+rsync asr1 $ESPNET_DIR/egs2/commonvoice/asr1
+```
+
+## Hyperparameters and configuration
+
+All configuration, including modified hyperparameters, are written into the
+files under _asr1/conf/tuning_. In particular,
+_train_asr_conformer5_linear-units-256-output-64-num-blocks-6.yaml_ contains
+the baseline configuration used by all experiments.
+
+# Experiment instructions
 
 ## Baseline
 
